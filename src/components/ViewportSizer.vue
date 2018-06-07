@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="viewportsizer">
     <h1>{{ msg }}</h1>
     <table>
       <thead>
@@ -67,5 +67,6 @@ th, td {
   border-bottom: 1px solid #e6e9ed;
   min-width: 150px;
   padding: 0.5em 1em;
+  text-align: left;
 }
 </style>

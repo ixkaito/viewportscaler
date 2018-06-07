@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld msg="ViewportSizer"/>
+    <ViewportSizer msg="ViewportSizer"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ViewportSizer from './components/ViewportSizer.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    ViewportSizer
   }
 }
 </script>
