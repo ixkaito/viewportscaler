@@ -1,6 +1,25 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Minimum</th>
+          <th>Maximum</th>
+        </tr>
+      </thead>
+      <tr>
+        <th>Viewport</th>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Size</th>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
     <p>
       For guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -53,5 +72,7 @@ li {
 }
 a {
   color: #42b983;
+}
+table {
 }
 </style>
