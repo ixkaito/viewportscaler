@@ -1,18 +1,18 @@
 <template>
   <div class="viewportsizer">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
     <table>
       <thead>
         <tr>
-          <th></th>
+          <th><input type="text" v-model="property"></th>
           <th>Minimum</th>
           <th>Maximum</th>
         </tr>
       </thead>
       <tr>
         <th>Viewport</th>
-        <td></td>
-        <td></td>
+        <td><input type="number" v-model="minV"> px</td>
+        <td><input type="number" v-model="maxV"> px</td>
       </tr>
       <tr>
         <th>Size</th>
@@ -21,16 +21,16 @@
       </tr>
     </table>
     <h2>Output</h2>
-<pre><code>@media screen and (min-width: $min-vp) {
+<pre><code>@media screen and (min-width: {{ minV }}px) {
   @if $y == 0 {
     #{$property}: $x;
   } @else {
-    #{$property}: calc(#{$x} + #{$y});
+    {{ property }}: calc(#{$x} + #{$y});
   }
 }
 
-@media screen and (min-width: $max-vp) {
-  #{$property}: $max-length;
+@media screen and (min-width: {{ maxV }}px) {
+  {{ property }}: $max-length;
 }</code></pre>
   </div>
 </template>
@@ -39,7 +39,10 @@
 export default {
   name: 'ViewportSizer',
   props: {
-    msg: String
+    title: String,
+    property: String,
+    minV: Number,
+    maxV: Number,
   }
 }
 </script>

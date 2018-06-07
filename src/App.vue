@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/images/logo.png">
-    <ViewportSizer msg="ViewportSizer"/>
+    <ViewportSizer title="ViewportSizer"/>
   </div>
 </template>
 
