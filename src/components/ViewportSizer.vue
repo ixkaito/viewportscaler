@@ -20,12 +20,24 @@
         <td></td>
       </tr>
     </table>
+    <h2>Output</h2>
+<pre><code>@media screen and (min-width: $min-vp) {
+  @if $y == 0 {
+    #{$property}: $x;
+  } @else {
+    #{$property}: calc(#{$x} + #{$y});
+  }
+}
+
+@media screen and (min-width: $max-vp) {
+  #{$property}: $max-length;
+}</code></pre>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'ViewportSizer',
   props: {
     msg: String
   }
@@ -34,7 +46,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-h3 {
+@import 'variables';
+
+h2 {
   margin: 40px 0 0;
 }
 ul {
@@ -52,21 +66,32 @@ a {
 
 table {
   border-collapse: collapse;
-  margin: auto;
-  max-width: 640px;
+  width: 100%;
 }
 
 thead {
 
   th, td {
-    border-bottom: 2px solid #e6e9ed;
+    border-bottom: 2px solid $dark-cloud;
   }
 }
 
 th, td {
-  border-bottom: 1px solid #e6e9ed;
+  border-bottom: 1px solid $dark-cloud;
   min-width: 150px;
   padding: 0.5em 1em;
   text-align: left;
+}
+
+pre {
+  background: $cloud;
+  border-radius: 3px;
+  padding: 1em;
+  text-align: left;
+}
+
+.viewportsizer {
+  margin: auto;
+  max-width: 640px;
 }
 </style>
