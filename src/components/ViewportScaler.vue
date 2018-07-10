@@ -92,7 +92,7 @@ th, td {
 
 pre {
   background: $cloud;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 1em;
   text-align: left;
 }
