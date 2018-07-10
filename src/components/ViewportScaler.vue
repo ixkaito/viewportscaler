@@ -4,7 +4,7 @@
     <table>
       <thead>
         <tr>
-          <th><input type="text" v-model="property"></th>
+          <th><input type="text" v-model="property" placeholder="font-size"></th>
           <th>Minimum</th>
           <th>Maximum</th>
         </tr>
@@ -20,16 +20,14 @@
         <td><input type="number" v-model="maxS"> px</td>
       </tr>
     </table>
-    <h2>Output</h2>
+    <h2>Sass</h2>
 <pre><code>{{ property }}: {{ minS }}px;
 
-@media screen and (min-width: {{ minV }}px) {
-  @if $y == 0 {
-    {{ property }}: #{$x};
-  } @else {
-    {{ property }}: calc(#{$x} + #{$y});
-  }
-}
+@media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
+  {{ property }}: {{ x }}vw;
+</template><template v-else>
+  {{ property }}: calc({{ x }}vw + {{ y }}px);
+</template>}
 
 @media screen and (min-width: {{ maxV }}px) {
   {{ property }}: {{ maxS }}px;
@@ -47,6 +45,14 @@ export default {
     maxV: Number,
     minS: Number,
     maxS: Number,
+  },
+  computed: {
+    x: function () {
+      return (this.maxS - this.minS) / (this.maxV - this.minV) * 100
+    },
+    y: function () {
+      return (this.maxV * this.minS - this.minV * this.maxS) / (this.maxV - this.minV)
+    }
   }
 }
 </script>
