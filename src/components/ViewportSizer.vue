@@ -16,21 +16,23 @@
       </tr>
       <tr>
         <th>Size</th>
-        <td></td>
-        <td></td>
+        <td><input type="number" v-model="minS"> px</td>
+        <td><input type="number" v-model="maxS"> px</td>
       </tr>
     </table>
     <h2>Output</h2>
-<pre><code>@media screen and (min-width: {{ minV }}px) {
+<pre><code>{{ property }}: {{ minS }}px;
+
+@media screen and (min-width: {{ minV }}px) {
   @if $y == 0 {
-    #{$property}: $x;
+    {{ property }}: #{$x};
   } @else {
     {{ property }}: calc(#{$x} + #{$y});
   }
 }
 
 @media screen and (min-width: {{ maxV }}px) {
-  {{ property }}: $max-length;
+  {{ property }}: {{ maxS }}px;
 }</code></pre>
   </div>
 </template>
@@ -43,6 +45,8 @@ export default {
     property: String,
     minV: Number,
     maxV: Number,
+    minS: Number,
+    maxS: Number,
   }
 }
 </script>
