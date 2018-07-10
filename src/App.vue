@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/images/logo.png">
-    <ViewportSizer title="ViewportSizer"/>
+    <ViewportScaler title="ViewportScaler"/>
   </div>
 </template>
 
 <script>
-import ViewportSizer from './components/ViewportSizer.vue'
+import ViewportScaler from './components/ViewportScaler.vue'
 
 export default {
   name: 'app',
   components: {
-    ViewportSizer
+    ViewportScaler
   }
 }
 </script>

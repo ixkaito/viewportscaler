@@ -1,5 +1,5 @@
 <template>
-  <div class="viewportsizer">
+  <div class="viewportscaler">
     <h1>{{ title }}</h1>
     <table>
       <thead>
@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: 'ViewportSizer',
+  name: 'ViewportScaler',
   props: {
     title: String,
     property: String,
@@ -97,7 +97,7 @@ pre {
   text-align: left;
 }
 
-.viewportsizer {
+.viewportscaler {
   margin: auto;
   max-width: 640px;
 }
