@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/images/logo.png">
+    <img src="./assets/images/logo.svg">
     <ViewportScaler title="ViewportScaler"/>
   </div>
 </template>
