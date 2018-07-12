@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/images/logo.svg">
-    <ViewportScaler title="ViewportScaler"/>
+    <ViewportScaler title="ViewportScaler" property="font-size"/>
   </div>
 </template>
 
