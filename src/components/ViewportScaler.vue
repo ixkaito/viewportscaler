@@ -4,20 +4,20 @@
     <table>
       <thead>
         <tr>
-          <th><input type="text" v-model="property" placeholder="font-size"></th>
+          <th><input type="text" tabindex="1" v-model="property" placeholder="font-size"></th>
           <th>Minimum</th>
           <th>Maximum</th>
         </tr>
       </thead>
       <tr>
         <th>Viewport</th>
-        <td><input type="number" v-model="minV"> px</td>
-        <td><input type="number" v-model="maxV"> px</td>
+        <td><input type="number" tabindex="2" v-model="minV"> px</td>
+        <td><input type="number" tabindex="4" v-model="maxV"> px</td>
       </tr>
       <tr>
         <th>Size</th>
-        <td><input type="number" v-model="minS"> px</td>
-        <td><input type="number" v-model="maxS"> px</td>
+        <td><input type="number" tabindex="3" v-model="minS"> px</td>
+        <td><input type="number" tabindex="5" v-model="maxS"> px</td>
       </tr>
     </table>
     <h2>Sass</h2>
