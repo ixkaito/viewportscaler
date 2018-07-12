@@ -68,8 +68,18 @@ export default {
 <style lang="scss" scoped>
 @import 'variables';
 
+h1 {
+  text-align: center;
+}
+
 h2 {
   margin: 40px 0 0;
+  text-align: center;
+}
+
+p {
+  margin-top: 3em;
+  padding: 0 1em;
 }
 
 input {

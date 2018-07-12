@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/images/logo.svg">
+    <img class="logo" src="./assets/images/logo.svg">
     <ViewportScaler title="ViewportScaler" property="font-size"/>
   </div>
 </template>
@@ -16,13 +16,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'components/variables';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: $dark-gray; // #2c3e50;
   margin-top: 60px;
+}
+
+.logo {
+  display: block;
+  margin: auto;
 }
 </style>
