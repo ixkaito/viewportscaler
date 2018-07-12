@@ -20,18 +20,18 @@
         <td><input type="number" tabindex="5" v-model="maxS"> <span class="code">px</span></td>
       </tr>
     </table>
-    <h2>Sass</h2>
 
-<pre><code>{{ property }}: {{ minS }}px;
+    <h2>Sass</h2>
+<pre class="monokai"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
-  {{ property }}: {{ x }}vw;
+  <span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
 </template><template v-else>
-  {{ property }}: calc({{ x }}vw {{ operator }} {{ absY }}px);
+  <span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
 </template>}
 
 @media screen and (min-width: {{ maxV }}px) {
-  {{ property }}: {{ maxS }}px;
+  <span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
   </div>
 </template>
@@ -74,6 +74,7 @@ h2 {
 
 input {
   background: $cloud;
+  border: 0;
   border: 1px solid $dark-cloud;
   border-radius: 2px;
   font-family: monospace;
@@ -126,4 +127,19 @@ pre {
 .code {
   font-family: monospace;
 }
+
+.monokai {
+  background: $monokai-background;
+  color: $monokai-foreground;
+
+  .scss {
+
+    .property { color: $monokai-cyan; }
+    .function { color: $monokai-cyan; }
+    .operator { color: $monokai-purple; }
+    .value { color: $monokai-purple; }
+    .unit { color: $monokai-magenta; }
+  }
+}
+
 </style>
