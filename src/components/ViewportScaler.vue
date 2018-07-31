@@ -49,10 +49,12 @@ export default {
   },
   computed: {
     x: function () {
-      return (this.maxS - this.minS) / (this.maxV - this.minV) * 100
+      let result = (this.maxS - this.minS) / (this.maxV - this.minV) * 100
+      return Math.round(result * 1000) / 1000 // Do not use `result.toFixed(2)` becuase it will leave `.00`
     },
     y: function () {
-      return (this.maxV * this.minS - this.minV * this.maxS) / (this.maxV - this.minV)
+      let result = (this.maxV * this.minS - this.minV * this.maxS) / (this.maxV - this.minV)
+      return Math.round(result * 1000) / 1000 // Do not use `result.toFixed(2)` becuase it will leave `.00`
     },
     operator: function () {
       return this.y > 0 ? '+' : '-'
