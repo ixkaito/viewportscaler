@@ -30,23 +30,23 @@
           <option>Tabs</option>
         </select>
       </p>
-      <p v-if="indentation == 'Spaces'">
-        <strong>Width:</strong>
-        <input class="spaces" type="number" tabindex="7" v-model="spaces">
+      <p>
+        <strong>Tab size:</strong>
+        <input class="tab-size" type="number" tabindex="7" v-model="tabSize">
       </p>
     </div>
 
     <h2>Sass</h2>
-<pre class="monokai"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
+<pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
-  <span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
+<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
 </template><template v-else>
-  <span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
+<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
 </template>}
 
 @media screen and (min-width: {{ maxV }}px) {
-  <span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
+<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
   </div>
 </template>
@@ -65,7 +65,7 @@ export default {
       type: String,
       default: 'Spaces'
     },
-    spaces: {
+    tabSize: {
       type: Number,
       default: 2
     }
@@ -84,6 +84,11 @@ export default {
     },
     absY: function () {
       return Math.abs(this.y)
+    },
+    indent: function () {
+      let space = '&#032;'
+      let tab = '&#009;'
+      return this.indentation == 'Spaces' ? space.repeat(this.tabSize) : tab
     }
   }
 }
@@ -129,7 +134,7 @@ input {
     width: calc(100% - 2em);
   }
 
-  &.spaces {
+  &.tab-size {
     width: 3em;
     margin-left: 0.5em;
   }
@@ -166,6 +171,7 @@ pre {
   background: $cloud;
   border-radius: 4px;
   padding: 1em;
+  tab-size: 4;
   text-align: left;
 }
 
