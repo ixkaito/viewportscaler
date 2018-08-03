@@ -21,6 +21,21 @@
       </tr>
     </table>
 
+    <h2>Output Style</h2>
+    <div class="output-style">
+      <p>
+        <strong>Indentation:</strong>
+        <select tabindex="6" v-model="indentation">
+          <option selected="selected">Spaces</option>
+          <option>Tabs</option>
+        </select>
+      </p>
+      <p v-if="indentation == 'Spaces'">
+        <strong>Width:</strong>
+        <input class="spaces" type="number" tabindex="7" v-model="spaces">
+      </p>
+    </div>
+
     <h2>Sass</h2>
 <pre class="monokai"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
@@ -46,6 +61,14 @@ export default {
     maxV: Number,
     minS: Number,
     maxS: Number,
+    indentation: {
+      type: String,
+      default: 'Spaces'
+    },
+    spaces: {
+      type: Number,
+      default: 2
+    }
   },
   computed: {
     x: function () {
@@ -80,25 +103,40 @@ h2 {
 }
 
 p {
-  margin-top: 3em;
   padding: 0 1em;
 }
 
-input {
+input,
+select {
   background: $cloud;
   border: 0;
   border: 1px solid $dark-cloud;
   border-radius: 2px;
+  box-sizing: border-box;
   font-family: monospace;
   font-size: 16px;
-  padding: 0.4em 0.6em;
-  width: calc(100% - 2em);
+  line-height: 20px;
+  height: 32px;
+  padding: 6px 0.6em;
 }
 
-input[type="number"] {
-  margin-right: 0.5em;
-  padding-right: 0.4em;
-  width: calc(100% - 4em);
+input {
+  width: 100%;
+
+  &[type="number"] {
+    margin-right: 0.5em;
+    padding-right: 0.4em;
+    width: calc(100% - 2em);
+  }
+
+  &.spaces {
+    width: 3em;
+    margin-left: 0.5em;
+  }
+}
+
+select {
+  margin: 0 0.5em;
 }
 
 a {
@@ -138,6 +176,19 @@ pre {
 
 .code {
   font-family: monospace;
+}
+
+.output-style {
+  border-bottom: 1px solid $dark-cloud;
+  border-top: 1px solid $dark-cloud;
+  display: flex;
+  margin-top: 2em;
+  padding: 0.5em 0;
+
+  p {
+    margin: 0;
+    width: 50%;
+  }
 }
 
 .monokai {
