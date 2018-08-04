@@ -214,19 +214,24 @@ pre {
     .value { color: $monokai-purple; }
     .unit { color: $monokai-magenta; }
   }
-}
 
-.indent {
-  display: inline-block;
-  border-left: 1px dotted #46484a;
-  box-sizing: border-box;
+  .indent {
+    display: inline-block;
+    border-left: 1px dotted $monokai-invisibles;
+    box-sizing: border-box;
 
-  /deep/ .space {
-    background: url(../assets/images/space.svg) no-repeat center center;
+    /deep/ .space {
+      background: url(../assets/images/space.svg) no-repeat center center;
+    }
+
+    /deep/ .tab {
+      background: url(../assets/images/tab.svg) repeat-x left center;
+    }
   }
 
-  /deep/ .tab {
-    background: url(../assets/images/tab.svg) repeat-x left center;
+  ::selection {
+    background: $monokai-invisibles;
   }
 }
+
 </style>
