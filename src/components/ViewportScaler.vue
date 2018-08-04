@@ -26,8 +26,8 @@
       <p>
         <strong>Indentation:</strong>
         <select tabindex="6" v-model="indentation">
-          <option selected="selected">Spaces</option>
-          <option>Tabs</option>
+          <option value="spaces" selected="selected">Spaces</option>
+          <option value="tabs">Tabs</option>
         </select>
       </p>
       <p>
@@ -40,13 +40,13 @@
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
-<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
+<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
 </template><template v-else>
-<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
+<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
 </template>}
 
 @media screen and (min-width: {{ maxV }}px) {
-<span v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
+<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
   </div>
 </template>
@@ -63,7 +63,7 @@ export default {
     maxS: Number,
     indentation: {
       type: String,
-      default: 'Spaces'
+      default: 'spaces'
     },
     tabSize: {
       type: Number,
@@ -88,7 +88,7 @@ export default {
     indent: function () {
       let space = '&#032;'
       let tab = '&#009;'
-      return this.indentation == 'Spaces' ? space.repeat(this.tabSize) : tab
+      return this.indentation == 'spaces' ? space.repeat(this.tabSize) : tab
     }
   }
 }
@@ -142,6 +142,11 @@ input {
 
 select {
   margin: 0 0.5em;
+  text-transform: capitalize;
+
+  option {
+    text-transform: capitalize;
+  }
 }
 
 a {
