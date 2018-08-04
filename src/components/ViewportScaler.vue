@@ -40,13 +40,13 @@
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
-<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
+<span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
 </template><template v-else>
-<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
+<span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
 </template>}
 
 @media screen and (min-width: {{ maxV }}px) {
-<span :class="indentation" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
+<span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
   </div>
 </template>
@@ -86,8 +86,8 @@ export default {
       return Math.abs(this.y)
     },
     indent: function () {
-      let space = '&#032;'
-      let tab = '&#009;'
+      let space = '<span class="space">&#032;</span>'
+      let tab = '<span class="tab">&#009;</span>'
       return this.indentation == 'spaces' ? space.repeat(this.tabSize) : tab
     }
   }
@@ -216,4 +216,17 @@ pre {
   }
 }
 
+.indent {
+  display: inline-block;
+  border-left: 1px dotted #46484a;
+  box-sizing: border-box;
+
+  /deep/ .space {
+    background: url(../assets/images/space.svg) no-repeat center center;
+  }
+
+  /deep/ .tab {
+    background: url(../assets/images/tab.svg) repeat-x left center;
+  }
+}
 </style>
