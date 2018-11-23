@@ -2,6 +2,11 @@
   <div class="viewportscaler">
     <h1>{{ title }}</h1>
 
+    <ul class="badges">
+      <li><iframe src="https://ghbtns.com/github-btn.html?user=ixkaito&repo=viewportscaler&type=star&count=true" frameborder="0" scrolling="0" width="78" height="20" allowTransparency="true" title="Star on GitHub"></iframe></li>
+      <li><iframe src="https://ghbtns.com/github-btn.html?user=ixkaito&type=follow" frameborder="0" scrolling="0" width="111" height="20" allowTransparency="true" title="Follow Me"></iframe></li><br class="desktop">
+    </ul>
+
     <div class="output-style">
       <p>
         <strong>Selector: </strong>
@@ -182,6 +187,11 @@ p {
   padding: 0 1em;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 input,
 select {
   background: $cloud;
@@ -259,6 +269,15 @@ code, .code, input, select {
 .viewportscaler {
   margin: auto;
   max-width: 640px;
+}
+
+.badges {
+  display: flex;
+  justify-content: center;
+
+  > li {
+    padding: 5px;
+  }
 }
 
 .output-style {
