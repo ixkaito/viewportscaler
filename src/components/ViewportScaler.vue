@@ -247,7 +247,7 @@ pre {
   text-align: left;
 }
 
-code, input, select {
+code, .code, input, select {
   font-family: "Menlo", monospace;
   font-size: 14px;
 }
@@ -255,10 +255,6 @@ code, input, select {
 .viewportscaler {
   margin: auto;
   max-width: 640px;
-}
-
-.code {
-  font-family: monospace;
 }
 
 .output-style {
