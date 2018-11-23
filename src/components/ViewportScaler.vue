@@ -46,7 +46,7 @@
       </p>
     </div>
 
-    <h2>Css</h2>
+    <h2>CSS</h2>
 
     <template v-if="selector">
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
