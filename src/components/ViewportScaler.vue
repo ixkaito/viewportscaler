@@ -1,42 +1,70 @@
 <template>
   <div class="viewportscaler">
     <h1>{{ title }}</h1>
+    <div class="output-style">
+      <p>
+        <strong>Selector: </strong>
+        <input type="text" tabindex="1" v-model="selector">
+      </p>
+      <p>
+        <strong>Property: </strong>
+        <input type="text" tabindex="2" v-model="property" placeholder="property">
+      </p>
+    </div>
     <table>
       <thead>
         <tr>
-          <th><input type="text" tabindex="1" v-model="property" placeholder="property"></th>
-          <th>Minimum</th>
-          <th>Maximum</th>
+          <th></th>
+          <th>Viewport</th>
+          <th>Size</th>
         </tr>
       </thead>
       <tr>
-        <th>Viewport</th>
-        <td><input type="number" tabindex="2" v-model="minV"> <span class="code">px</span></td>
-        <td><input type="number" tabindex="4" v-model="maxV"> <span class="code">px</span></td>
+        <th>Minimum</th>
+        <td><input type="number" tabindex="3" v-model="minV"><span class="code"> px</span></td>
+        <td><input type="number" tabindex="4" v-model="minS"><span class="code"> px</span></td>
       </tr>
       <tr>
-        <th>Size</th>
-        <td><input type="number" tabindex="3" v-model="minS"> <span class="code">px</span></td>
-        <td><input type="number" tabindex="5" v-model="maxS"> <span class="code">px</span></td>
+        <th>Maximum</th>
+        <td><input type="number" tabindex="5" v-model="maxV"><span class="code"> px</span></td>
+        <td><input type="number" tabindex="6" v-model="maxS"><span class="code"> px</span></td>
       </tr>
     </table>
 
     <h2>Output Style</h2>
     <div class="output-style">
       <p>
-        <strong>Indentation:</strong>
+        <strong>Indentation: </strong>
         <select tabindex="6" v-model="indentation">
           <option value="spaces" selected="selected">Spaces</option>
           <option value="tabs">Tabs</option>
         </select>
       </p>
       <p>
-        <strong>Tab size:</strong>
+        <strong>Tab size: </strong>
         <input class="tab-size" type="number" tabindex="7" v-model="tabSize">
       </p>
     </div>
 
     <h2>Sass</h2>
+
+    <template v-if="selector">
+<pre v-highlightjs class="monokai" :style="{tabSize: tabSize}"><code class="scss">{{ selector }} {
+<span class="indent" v-html="indent" />{{ property }}: {{ minS }}px;
+<template v-if="x && maxS">
+<span class="indent" v-html="indent" />@media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: {{ x }}vw;
+</template><template v-else>
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: calc({{ x }}vw {{ operator }} {{ absY }}px);
+</template><span class="indent" v-html="indent" />}
+
+<span class="indent" v-html="indent" />@media screen and (min-width: {{ maxV }}px) {
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: {{ maxS }}px;
+<span class="indent" v-html="indent" />}
+</template>}</code></pre>
+    </template>
+
+    <template v-else>
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
@@ -48,6 +76,8 @@
 @media screen and (min-width: {{ maxV }}px) {
 <span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
+    </template>
+
   </div>
 </template>
 
@@ -56,6 +86,7 @@ export default {
   name: 'ViewportScaler',
   props: {
     title: String,
+    selector: String,
     property: String,
     minV: Number,
     maxV: Number,
@@ -126,22 +157,18 @@ select {
 }
 
 input {
-  width: 100%;
 
   &[type="number"] {
-    margin-right: 0.5em;
     padding-right: 0.4em;
     width: calc(100% - 2em);
   }
 
   &.tab-size {
     width: 3em;
-    margin-left: 0.5em;
   }
 }
 
 select {
-  margin: 0 0.5em;
   text-transform: capitalize;
 
   option {
