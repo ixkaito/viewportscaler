@@ -1,6 +1,7 @@
 <template>
   <div class="viewportscaler">
     <h1>{{ title }}</h1>
+
     <div class="output-style">
       <p>
         <strong>Selector: </strong>
@@ -11,6 +12,8 @@
         <input type="text" tabindex="2" v-model="property" placeholder="property">
       </p>
     </div>
+
+    <h2>Min/Max</h2>
     <table>
       <thead>
         <tr>
@@ -184,9 +187,9 @@ select {
   box-sizing: border-box;
   font-family: monospace;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 32px;
   height: 32px;
-  padding: 6px 0.6em;
+  padding: 0 0.6em;
 }
 
 input {
@@ -232,12 +235,21 @@ th, td {
   text-align: left;
 }
 
+th {
+  min-width: 100px;
+}
+
 pre {
   background: $cloud;
   border-radius: 4px;
   padding: 1em;
   tab-size: 4;
   text-align: left;
+}
+
+code, input, select {
+  font-family: "Menlo", monospace;
+  font-size: 14px;
 }
 
 .viewportscaler {
