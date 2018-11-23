@@ -28,12 +28,12 @@
         </tr>
       </thead>
       <tr>
-        <th>Minimum</th>
+        <th>Min</th>
         <td><input type="number" tabindex="3" v-model="minV"><span class="code"> px</span></td>
         <td><input type="number" tabindex="4" v-model="minS"><span class="code"> px</span></td>
       </tr>
       <tr>
-        <th>Maximum</th>
+        <th>Max</th>
         <td><input type="number" tabindex="5" v-model="maxV"><span class="code"> px</span></td>
         <td><input type="number" tabindex="6" v-model="maxS"><span class="code"> px</span></td>
       </tr>
