@@ -51,7 +51,7 @@
 
     <h2>CSS</h2>
 
-    <template v-if="selector">
+    <template v-if="selector && property && minS">
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
 <span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 }
@@ -71,12 +71,12 @@
     </template>
 
     <template v-else>
-      <p>Please input the selector.</p>
+<pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="comment">// Please input the selector, the property, and the minimum size</span></code></pre>
     </template>
 
     <h2>Sass</h2>
 
-    <template v-if="selector">
+    <template v-if="selector && property && minS">
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
 <span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
@@ -92,7 +92,7 @@
 </template>}</code></pre>
     </template>
 
-    <template v-else>
+    <template v-else-if="property && minS">
 <pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 @media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
@@ -104,6 +104,10 @@
 @media screen and (min-width: {{ maxV }}px) {
 <span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 }</template></code></pre>
+    </template>
+
+    <template v-else>
+<pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="comment">// Please input the property and the min size</span></code></pre>
     </template>
 
   </div>
@@ -286,6 +290,7 @@ code, .code, input, select {
     /deep/ .operator { color: $monokai-purple; }
     /deep/ .value { color: $monokai-purple; }
     /deep/ .unit { color: $monokai-magenta; }
+    /deep/ .comment { color: $monokai-comment; }
   }
 
   .indent {
