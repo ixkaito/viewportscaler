@@ -2,6 +2,9 @@
   <div id="app">
     <img class="logo" src="./assets/images/logo.svg">
     <ViewportScaler title="ViewportScaler" property="font-size"/>
+    <footer class="footer">
+      <p class="copyright">© 2018 <a href="https://github.com/ixkaito">Kite</a></p>
+    </footer>
   </div>
 </template>
 
@@ -19,6 +22,14 @@ export default {
 <style lang="scss">
 @import 'components/variables';
 
+a {
+  color: $blue;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,5 +41,14 @@ export default {
 .logo {
   display: block;
   margin: auto;
+}
+
+.footer {
+  border-top: 1px solid $dark-cloud;
+  margin-top: 4em;
+
+  .copyright {
+    text-align: center;
+  }
 }
 </style>
