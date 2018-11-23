@@ -46,20 +46,45 @@
       </p>
     </div>
 
+    <h2>Css</h2>
+
+    <template v-if="selector">
+<pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
+<span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
+}
+<template v-if="x && maxS">
+@media screen and (min-width: {{ minV }}px) {
+<span class="indent" v-html="indent" /><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {<template v-if="y === 0">
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;</template><template v-else>
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);</template>
+<span class="indent" v-html="indent" />}
+}
+
+@media screen and (min-width: {{ maxV }}px) {
+<span class="indent" v-html="indent" /><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
+<span class="indent" v-html="indent" />}
+}</template></code></pre>
+    </template>
+
+    <template v-else>
+      <p>Please input the selector.</p>
+    </template>
+
     <h2>Sass</h2>
 
     <template v-if="selector">
-<pre v-highlightjs class="monokai" :style="{tabSize: tabSize}"><code class="scss">{{ selector }} {
-<span class="indent" v-html="indent" />{{ property }}: {{ minS }}px;
+<pre class="monokai" :style="{tabSize: tabSize}"><code class="scss"><span class="selector-tag" v-bind:class="selectorClass">{{ selector }}</span> {
+<span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ minS }}</span><span class="unit">px</span>;
 <template v-if="x && maxS">
 <span class="indent" v-html="indent" />@media screen and (min-width: {{ minV }}px) {<template v-if="y === 0">
-<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: {{ x }}vw;
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ x }}</span><span class="unit">vw</span>;
 </template><template v-else>
-<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: calc({{ x }}vw {{ operator }} {{ absY }}px);
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="function">calc</span>(<span class="value">{{ x }}</span><span class="unit">vw</span> <span class="operator">{{ operator }}</span> <span class="value">{{ absY }}</span><span class="unit">px</span>);
 </template><span class="indent" v-html="indent" />}
 
 <span class="indent" v-html="indent" />@media screen and (min-width: {{ maxV }}px) {
-<span class="indent" v-html="indent" /><span class="indent" v-html="indent" />{{ property }}: {{ maxS }}px;
+<span class="indent" v-html="indent" /><span class="indent" v-html="indent" /><span class="property">{{ property }}</span>: <span class="value">{{ maxS }}</span><span class="unit">px</span>;
 <span class="indent" v-html="indent" />}
 </template>}</code></pre>
     </template>
@@ -115,6 +140,14 @@ export default {
     },
     absY: function () {
       return Math.abs(this.y)
+    },
+    selectorClass: function () {
+      return {
+        'selector-class': this.selector.match(/^(\..*)$/),
+        'selector-id': this.selector.match(/^(#.*)$/),
+        'selector-attr': this.selector.match(/^(\[.*)$/),
+        'selector-pseudo': this.selector.match(/^(:.*)$/)
+      }
     },
     indent: function () {
       let space = '<span class="space">&#032;</span>'
@@ -235,11 +268,16 @@ pre {
 
   .scss {
 
-    .property { color: $monokai-cyan; }
-    .function { color: $monokai-cyan; }
-    .operator { color: $monokai-purple; }
-    .value { color: $monokai-purple; }
-    .unit { color: $monokai-magenta; }
+    /deep/ .selector-tag { color: $monokai-magenta; }
+    /deep/ .selector-class,
+    /deep/ .selector-id { color: $monokai-green; }
+    /deep/ .selector-attr { color: $monokai-yellow; }
+    /deep/ .selector-pseudo { color: $monokai-foreground; }
+    /deep/ .property { color: $monokai-cyan; }
+    /deep/ .function { color: $monokai-cyan; }
+    /deep/ .operator { color: $monokai-purple; }
+    /deep/ .value { color: $monokai-purple; }
+    /deep/ .unit { color: $monokai-magenta; }
   }
 
   .indent {
