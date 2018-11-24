@@ -23,7 +23,7 @@
       <thead>
         <tr>
           <th></th>
-          <th>Viewport</th>
+          <th>Viewport Width</th>
           <th>Size</th>
         </tr>
       </thead>
