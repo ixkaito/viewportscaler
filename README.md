@@ -2,7 +2,7 @@
 
 <h1 align="center">ViewportScaler</h1>
 
-<p align="center">Fluid-responsive value/calculation Generator for CSS/Sass.<br>
+<p align="center">Fluid-responsive value/calculation generator for CSS/Sass.<br>
 To linearly scale font-size, margin, padding, etc. across viewport widths.</p>
 
 <p align="center">https://ixkaito.github.io/viewportscaler/</p>
